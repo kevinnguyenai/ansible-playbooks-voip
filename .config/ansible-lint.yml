@@ -4,7 +4,8 @@
 # https://github.com/ansiblejunky/ansible-project-template/blob/master/.ansible-lint
 
 use_default_rules: true
-
+mock_roles:
+  - ansible-role-rtpengine
 skip_list:
   - yaml[new-line-at-end-of-file]
   - yaml[colons]
@@ -25,7 +26,6 @@ warn_list:
   - yaml[indentation]
   - yaml[line-length]
   - yaml[truthy]
-  - ansible-role-rtpengine
 
 # parseable output in the format of pep8
 parseable: true
