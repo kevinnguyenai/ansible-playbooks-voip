@@ -5,7 +5,7 @@ managed_file_dir: /opt/ansible/managed_files
 
 # Timezone
 # Format: IANA tz zone name (e.g. "Europe/Amsterdam")
-timezone: Europe/Amsterdam
+timezone: America/New_York
 
 # Default user to for Ansible "remote_user"
 # You can override this in groups_vars, or host_vars
@@ -21,13 +21,11 @@ common:
     selfsignedcertificate: yes
   web:
     domain: dev.example.com
-    admin: support@renater.fr
+    admin: tuan.anh.nguyen@leapxpert.com
   mail:
     domain: dev.example.com
   admins:
-    - david@example.com
-    - etienne@example.com
-    - olivier@example.com    
+    - tuan.anh.nguyen@leapxpert.com 
   check_smtp:
     smtp_out: localhost
     address: check-smtp-service-ping

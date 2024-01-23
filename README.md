@@ -258,3 +258,24 @@ main.yml:
 
 - include_tasks: "{{ ansible_os_family }}_do_something.yml"
 
+### TODO - RTPENGINE
+
+## Azure
+
+Need private key to access to environment on Azure
+
+`$ export PRIVATE_KEY=~/.ssh/id_rsa`
+
+Check your config before deploy it to node 
+
+`$ ansible-playbook -vvv  --private-key $PRIVATE_KEY --check playbooks/rtpengine_prepare_env.yaml`
+`$ ansible-playbook -vvv  --private-key $PRIVATE_KEY --check playbooks/rtpengine_install.yml `
+
+Install needed resources before apply playbook for rtpengine on new Env
+
+`$ ansible-playbook -vvv  --private-key $PRIVATE_KEY  playbooks/rtpengine_prepare_env.yaml`
+
+Provision RTP engine to target Env
+
+`$ ansible-playbook -vvv  --private-key $PRIVATE_KEY check playbooks/rtpengine_install.yml `
+
