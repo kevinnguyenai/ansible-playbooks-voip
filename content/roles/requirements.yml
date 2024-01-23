@@ -14,10 +14,10 @@
 
 roles:
 
-  - name: role-template
-    src: https://github.com/ansiblejunky/ansible-role-template.git
-    version: master
-    scm: git
+  # - name: role-template
+  #   src: https://github.com/ansiblejunky/ansible-role-template.git
+  #   version: master
+  #   scm: git
   - name: ansible-role-rtpengine
     src: https://github.com/drachtio/ansible-role-rtpengine.git
     version: master
