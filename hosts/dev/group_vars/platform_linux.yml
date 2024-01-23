@@ -25,10 +25,9 @@ common:
   mail:
     domain: dev.example.com
   admins:
-    - tuan.anh.nguyen@leapxpert.com 
+    - tuan.anh.nguyen@leapxpert.com
   check_smtp:
     smtp_out: localhost
     address: check-smtp-service-ping
     auth_secret: foobar
     max_delay: 300
-      

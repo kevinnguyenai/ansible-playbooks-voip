@@ -260,7 +260,7 @@ main.yml:
 
 ### TODO - RTPENGINE
 
-## Azure
+## AZURE
 
 Need private key to access to environment on Azure
 
@@ -277,5 +277,4 @@ Install needed resources before apply playbook for rtpengine on new Env
 
 Provision RTP engine to target Env
 
-`$ ansible-playbook -vvv  --private-key $PRIVATE_KEY check playbooks/rtpengine_install.yml `
-
+`$ ansible-playbook -vvv  --private-key $PRIVATE_KEY check playbooks/rtpengine_install.yml`
