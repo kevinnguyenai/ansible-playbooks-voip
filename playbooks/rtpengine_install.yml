@@ -1,0 +1,10 @@
+---
+- name: Install target host with rtp-engine
+  become: yes
+  become_user: root
+  hosts: all
+  gather_facts: false
+  roles: 
+    - ansible-role-rtpengine
+
+
