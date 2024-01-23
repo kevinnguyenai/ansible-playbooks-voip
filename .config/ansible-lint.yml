@@ -25,6 +25,7 @@ warn_list:
   - yaml[indentation]
   - yaml[line-length]
   - yaml[truthy]
+  - ansible-role-rtpengine
 
 # parseable output in the format of pep8
 parseable: true
