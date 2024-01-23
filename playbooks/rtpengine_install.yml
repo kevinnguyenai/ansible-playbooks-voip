@@ -6,5 +6,7 @@
   gather_facts: false
   roles: 
     - ansible-role-rtpengine
+  vars:
+    rtp_engine_version: mr9.5.8.2
 
 

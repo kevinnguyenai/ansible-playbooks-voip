@@ -3,7 +3,7 @@
   become: true
   become_user: root
   hosts: all
-  debugger: 'false'
+  debugger: false
 
 
   tasks:
