@@ -1,0 +1,31 @@
+---
+- name: Install target host with opensips 3.4.3
+  become: yes
+  become_user: root
+  hosts: all
+  gather_facts: false
+  roles:
+    - ansible-opensips
+  vars:
+    opensips_version: 3.4
+    ansible_build: releases
+    opensips_modules: [
+        'opensips-postgres-module', 
+        'opensips-restclient-module',
+        'opensips-kafka-module',
+        'opensips-json-module',
+        'opensips-http-modules',
+        'opensips-prometheus-module',
+        'opensips-regex-module',
+        'opensips-auth-jwt-module',
+        'opensips-auth-modules',
+        'opensips-tls-module',
+        'opensips-tlsmgm-module',
+        'opensips-tls-wolfssl-module',
+        'opensips-presence-modules',
+        'opensips-rabbitmq-modules',
+        'opensips-wss-module',
+        'opensips-xmlrpc-module']
+#    opensips_config:
+    
+
