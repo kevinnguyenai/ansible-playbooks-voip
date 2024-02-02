@@ -1,0 +1,38 @@
+# group_vars/all: Variables visible in all roles
+
+# Directory for keeping files on the remote host for use by Ansible
+managed_file_dir: /opt/ansible/managed_files
+
+# Timezone
+# Format: IANA tz zone name (e.g. "Europe/Amsterdam")
+timezone: America/New_York
+
+# Default user to for Ansible "remote_user"
+# You can override this in groups_vars, or host_vars
+ansible_remote_user: kevin
+ansible_ssh_user: kevin
+# ansible_ssh_executable: /usr/bin/sshpass
+ansible_become_method: sudo
+# ansible_become_method: su
+# ansible_become_flags: "-"
+
+install_prefix: /usr/local
+
+common:
+  ip: "*"
+  port: 22
+  ssl:
+    enabled: yes
+    selfsignedcertificate: yes
+  web:
+    domain: sandbox.local
+    admin: kevin.nguyen.ai@gmail.com
+  mail:
+    domain: sandbox.local
+  admins:
+    - kevin.nguyen.ai@gmail.com
+  check_smtp:
+    smtp_out: localhost
+    address: check-smtp-service-ping
+    auth_secret: foobar
+    max_delay: 300
