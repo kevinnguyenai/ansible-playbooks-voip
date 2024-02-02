@@ -258,9 +258,15 @@ main.yml:
 
 - include_tasks: "{{ ansible_os_family }}_do_something.yml"
 
-### TODO - RTPENGINE
+# TODO
 
-## AZURE
+update role before do below
+
+`$ ansible-galaxy role install -r content/roles/requirements.yml`
+
+## RTPENGINE
+
+### AZURE
 
 Need private key to access to environment on Azure
 
@@ -278,3 +284,97 @@ Install needed resources before apply playbook for rtpengine on new Env
 Provision RTP engine to target Env
 
 `$ ansible-playbook -vvv  --private-key $PRIVATE_KEY check playbooks/rtpengine_install.yml`
+
+## OPENSIPS
+
+### OnPremise 
+
+Need private key to access to environment 
+
+`$ export PRIVATE_KEY=~/.ssh/id_rsa`
+
+to use the 'ssh' connection type with passwords or pkcs11_provider, you must install the sshpass program"
+check `sshpass` is available in remote server
+
+`$ sshpass -V`
+
+if `sshpass` is not exist, we have to install it
+
+`$ sudo apt install sshpass`
+
+<!-- then export additional SSH_PASS and SUDO_PASS to used for connection
+
+`$ export SSH_PASS="<?>"`
+
+`$ export SUDO_PASS="<?>"`
+
+or add additional args to command
+
+```
+-k, --ask-pass: ask for connection password
+-K, --ask-become-pass: ask for privilege escalation password
+``` -->
+
+<!-- Check config before deploy to node using --ask-pass & --ask-become-pass
+
+`$ ansible-playbook -vvv  --private-key $PRIVATE_KEY -kK --check playbooks/opensips_debian12_install.yml ` -->
+
+Create encrypted key:value used to used to run playbook
+
+  `$ ansible-vault encrypt_string 'your_sudo_password' --name 'ansible_sudo_pass' > encrypted_sudo_pass.yml` or you want another version using vault `$ ansible-vault encrypt_string 'your_sudo_password' --name 'ansible_sudo_pass' --ask-vault-password > encrypted_sudo_pass.yml`
+
+  `$ ansible-vault encrypt_string 'your_sudo_password' --name 'ansible_ssh_pass' --ask-vault-password > encrypted_ssh_pass.yml`
+  or in situation we need both ssh_pass and sudo_pass we have to build a yml file like this
+
+  ```
+    ---
+      - ansible_ssh_pass: 'your_ssh_password'
+      - ansible_sudo_pass: 'your_sudo_password'
+  ```
+  then encrypt it with ansible-vault
+
+  `$ ansible-vault encrypt --ask-vault-password encrypted_pass.yml`
+
+  validate again by
+
+  `$ ansible-inventory --extra-vars @encrypted_pass.yml --ask-vault-password --list`
+
+  add key to your ssh-agent
+
+  ```
+  eval $(ssh-agent)
+  ssh-add /home/abugher/.ssh/id_rsa
+  <TYPE IN YOUR PASSPHRASE>
+  ssh-add -l
+  ```
+
+
+Check config before deploy to node with extra vars
+
+<!-- `$ ansible-playbook -vvv  --private-key $PRIVATE_KEY --extra-vars "ansible_ssh_user:kevin" --extra-vars "ansible_sudo_pass:${SUDO_PASS}" --extra-vars "ansible_ssh_pass:${SSH_PASS}" --check playbooks/opensips_debian12_pkg.yml` -->
+
+there only sudo pass is required 
+
+```
+$ ansible-playbook -vvv \
+--private-key $PRIVATE_KEY \
+--ask-vault-password \
+--extra-vars @encrypted_sudo_pass.yml \
+--check playbooks/opensips_debian12_pkg.yml
+```
+
+there both of sudo ans ssh pass is required
+
+```
+$ ansible-playbook -vvv \
+--private-key $PRIVATE_KEY \
+--ask-vault-password \
+--extra-vars @encrypted_pass.yml \
+--check playbooks/opensips_debian12_pkg.yml
+
+$ ansible-playbook -vvv \
+--private-key $PRIVATE_KEY \
+--ask-vault-password \
+--extra-vars @encrypted_pass.yml \
+--check playbooks/opensips_debian12_install.yml
+```
