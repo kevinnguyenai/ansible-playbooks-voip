@@ -1,6 +1,6 @@
 ---
 - name: Shutdown web layer
-  hosts: web
+  hosts: localhost
   gather_facts: true
 
   tasks:
