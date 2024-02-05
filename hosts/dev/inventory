@@ -3,3 +3,5 @@
 
 [debian_linux]
 42.116.254.21 custom_distribution_release=jammy
+42.116.254.23 custom_distribution_release=jammy
+42.116.254.24 custom_distribution_release=jammy
