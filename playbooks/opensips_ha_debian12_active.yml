@@ -27,4 +27,4 @@
         'opensips-rabbitmq-modules',
         'opensips-wss-module',
         'opensips-xmlrpc-module']
-#    opensips_config:
+    opensips_config: 'templates/opensips/opensips.cfg'
