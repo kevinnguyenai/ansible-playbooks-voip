@@ -277,6 +277,22 @@ Check your config before deploy it to node
 `$ ansible-playbook -vvv  --private-key $PRIVATE_KEY --check playbooks/rtpengine_prepare_env.yaml`
 `$ ansible-playbook -vvv  --private-key $PRIVATE_KEY --check playbooks/rtpengine_install.yml `
 
+with vault password
+
+```bash
+ansible-playbook -vvv  --private-key $PRIVATE_KEY --check \
+--ask-vault-password \
+--extra-vars @encrypted_pass.yml \
+playbooks/rtpengine_prepare_env.yaml
+```
+
+```bash
+ansible-playbook -vvv  --private-key $PRIVATE_KEY --check \
+--ask-vault-password \
+--extra-vars @encrypted_pass.yml \
+playbooks/rtpengine_install.yml 
+```
+
 Install needed resources before apply playbook for rtpengine on new Env
 
 `$ ansible-playbook -vvv  --private-key $PRIVATE_KEY  playbooks/rtpengine_prepare_env.yaml`
