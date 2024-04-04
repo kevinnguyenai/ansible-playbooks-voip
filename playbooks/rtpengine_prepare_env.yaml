@@ -2,8 +2,9 @@
 - name: Install target host with rtp-engine
   become: true
   become_user: root
-  hosts: all
-
+  # hosts: all
+  hosts:
+    - 172.203.140.149
 
   tasks:
     - name: Install a list of packages
@@ -18,3 +19,23 @@
         install_recommends: true
         update_cache: true
         force: true
+
+    - name: remove old cmake packages
+      ansible.builtin.apt:
+        pkg:
+          - cmake
+        state: absent
+        autoclean: true
+        force: true
+
+    - name: install cmake from source
+      command:
+        argv:
+        - wget https://github.com/Kitware/CMake/releases/download/v3.29.1/cmake-3.29.1.tar.gz -o /usr/local/src/cmake-3.29.1.tar.gz && \
+        - chdir=/usr/local/src/ && \
+        - tar -zxvf cmake-3.29.1.tar.gz && \
+        - chdir=/usr/local/src/cmake-3.29.1 && \
+        - ./configure && \
+        - gmake && \
+        - make install
+          
