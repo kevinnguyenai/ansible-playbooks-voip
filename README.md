@@ -278,6 +278,8 @@ Check your config before deploy it to node
 `$ ansible-playbook -vvv  --private-key $PRIVATE_KEY --check playbooks/rtpengine_install.yml `
 
 with vault password
+ - want to run without cache add `--flush-cache \`
+ - want to apply without check , remove `--check`
 
 ```bash
 ansible-playbook -vvv  --private-key $PRIVATE_KEY --check \
@@ -285,6 +287,10 @@ ansible-playbook -vvv  --private-key $PRIVATE_KEY --check \
 --extra-vars @encrypted_pass.yml \
 playbooks/rtpengine_prepare_env.yaml
 ```
+
+build and install rtpengine 
+ - add `an-archive.trafficmanager.net/debian bullseye-backports main` to /`etc/apt/sources.list` before run if lack of packages
+ - install `sudo apt install linux-headers-$(uname -r)`
 
 ```bash
 ansible-playbook -vvv  --private-key $PRIVATE_KEY --check \
@@ -300,6 +306,9 @@ Install needed resources before apply playbook for rtpengine on new Env
 Provision RTP engine to target Env
 
 `$ ansible-playbook -vvv  --private-key $PRIVATE_KEY check playbooks/rtpengine_install.yml`
+
+Sometimes you need more perl module to check and run with rtpengine, if you need it please add
+`cpan Socket6 Bencode 
 
 ## OPENSIPS
 

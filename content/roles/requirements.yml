@@ -26,3 +26,7 @@ roles:
     src: https://github.com/sccvn/ansible-opensips.git
     version: dev
     scm: git
+  - name: ansible-role-docker
+    src: https://github.com/sccvn/ansible-role-docker.git
+    version: master
+    scm: git

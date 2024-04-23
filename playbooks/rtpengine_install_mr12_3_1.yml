@@ -1,0 +1,14 @@
+---
+- name: Install target host with rtp-engine
+  become: yes
+  become_user: root
+  # hosts: all
+  hosts:
+    - 74.235.212.41
+  gather_facts: true
+  roles:
+    - ansible-role-rtpengine
+  vars:
+    rtp_engine_version: mr12.3.1.2
+    ansible_distribution: Debian
+    enable_kernel: with-kernel
