@@ -1,0 +1,17 @@
+# This file contains ignores rule violations for ansible-lint
+content/roles/ansible-opensips internal-error
+content/roles/ansible-role-rtpengine internal-error
+content/roles/ansible-role-rtpengine/tests/test.yml internal-error
+playbooks/opensips_debian12_install.yml internal-error
+playbooks/opensips_debian12_pkg.yml internal-error
+playbooks/opensips_ha_debian12_active.yml internal-error
+playbooks/opensips_ha_debian12_backup.yml internal-error
+playbooks/opensips_ha_debian12_pkg.yml internal-error
+playbooks/rtpengine_install.yml internal-error
+playbooks/rtpengine_install_mr12_3_1.yml internal-error
+playbooks/rtpengine_prepare_env.yaml internal-error
+playbooks/rtpengine_prepare_env.yaml fqcn
+playbooks/rtpengine_prepare_env.yaml package-latest
+playbooks/rtpengine_prepare_env.yaml no-changed-when
+playbooks/rtpengine_prepare_env.yaml comand-instead-of-module
+playbooks/server_patch.yml internal-error
